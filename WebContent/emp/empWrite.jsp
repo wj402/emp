@@ -1,11 +1,45 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
+<%@ include file="../include/dbCon.jsp" %>
+
+<!-- 1001, 1002, 1003 ~~~ --> 
+<!-- max(empno)+1 --> 
+
+   
+<%
+	/* 사원 번호 얻기 */
+	// ifnull(A,B) : A(비교데이터), B(NULL 대비 세팅)
+	String sql = "select ifnull(max(empno),1000)+1 myempno from emp";
+	ResultSet rs = stmt.executeQuery(sql);
+	int myempno = 0;
+	if( rs.next() ) {
+		myempno = rs.getInt("myempno");
+	}
+	
+	String sql2 = "SELECT deptno,dname FROM dept ORDER BY dname ASC";
+	ResultSet rs2 = stmt.executeQuery(sql2);
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>사원입력화면</title>
 <link rel="stylesheet" type="text/css" href="../css/empMain.css">
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+  <script>
+  $( function() {
+    $( "#hiredate" ).datepicker({
+    	changeMonth: true,
+    	changeYear: true
+    });
+  } );
+  </script>
 </head>
 
 <style>
@@ -60,7 +94,7 @@
 			<caption style="font-size:15px;">사원정보등록</caption>
 			<tr>
 				<th width="20%">사원번호</th>
-				<td width="80%"><input type="text" name="empno"></td>
+				<td width="80%"><input type="text" name="empno" value="<%=myempno %>"></td>
 			</tr>
 			<tr>
 				<th>사원이름</th>
@@ -76,11 +110,23 @@
 			</tr>
 			<tr>
 				<th>입사일</th>
-				<td><input type="text" name="hiredate"></td>
+				<td><input type="text" name="hiredate" id="hiredate"></td>
 			</tr>
 			<tr>
 				<th>부서번호</th>
-				<td><input type="text" name="deptno"></td>
+				<td>
+					<select name="deptno">
+					<%
+						while( rs2.next() ) {
+							String deptno = rs2.getString("deptno");
+							String dname = rs2.getString("dname");
+					%>
+						<option value="<%=deptno %>"><%=dname %></option>
+					<%
+						}
+					%>
+					</select>
+				</td>
 			</tr>
 		</table>
 		<div style="width:100%; text-align:center; margin-top:10px">
