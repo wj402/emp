@@ -107,12 +107,12 @@
 
 <body>
 
-	<form name="frm" method="post" action="empWriteSave.jsp">
+	<form name="frm" method="post" action="empModifySave.jsp">
 		<table align="center">
-			<caption style="font-size:15px;">사원정보등록</caption>
+			<caption style="font-size:15px;">사원정보수정</caption>
 			<tr>
 				<th width="20%">사원번호</th>
-				<td width="80%"><input type="text" name="empno" value="<%=empno %>"></td>
+				<td width="80%"><input type="text" name="empno" value="<%=empno %>" readonly></td>
 			</tr>
 			<tr>
 				<th>사원이름</th>
@@ -131,15 +131,19 @@
 				<td><input type="text" name="hiredate" id="hiredate" value="<%=hiredate %>"></td>
 			</tr>
 			<tr>
-				<th>부서번호</th>
+				<th>부서</th>
 				<td>
 					<select name="deptno">
 					<%
 						while( rs2.next() ) {
-							String no = rs2.getString("deptno");
+							int no = rs2.getInt("deptno");
 							String dname = rs2.getString("dname");
+							String chk = "";
+							if( no == deptno ) {
+								chk = "selected";
+							}
 					%>
-						<option value="<%=no %>"><%=dname %></option>
+						<option value="<%=no %>" <%=chk %>><%=dname %></option>
 					<%
 						}
 					%>
