@@ -103,6 +103,14 @@
 		}
 		document.frm.submit();
 	}
+	
+	function fn_delete() {
+		
+		if( confirm("정말 삭제하시겠습니까?") ) { // [확인][취소]
+			var url = "empDelete.jsp?empno=<%=empno %>";
+			location = url;
+		}
+	}
 </script>
 
 <body>
@@ -152,9 +160,10 @@
 			</tr>
 		</table>
 		<div style="width:100%; text-align:center; margin-top:10px">
+			<button type="button" onclick="location='empList.jsp';">목록</button>
 			<button type="submit" onclick="fn_submit();return false">저장</button>
 			<button type="reset">취소</button>
-			<button type="button" onclick="location='empList.jsp';">목록</button>
+			<button type="button" onclick="fn_delete()">삭제</button>
 		</div>
 	</form>
 </body>
