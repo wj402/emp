@@ -18,12 +18,24 @@
 
 <!-- 사원이릅, 업무, 입사일, 부서명 -->
 <%
+/*
 	String sql = "SELECT empno,"; 
 		  sql += "       ename,";
 		  sql += "         job,"; 
 		  sql += "    hiredate,";
 		  sql += "    (select dname from dept where deptno=emp.deptno) dname";
-		  sql += " FROM emp ORDER BY ename ASC ";
+		  sql += " FROM emp ORDER BY ename ASC "; 
+*/
+    // Join을 통해서 출력을 하면 속도가 더 빠르다.
+	String sql = " SELECT e.empno, ";
+	      sql += "        e.ename, ";
+	      sql += "        e.job, ";
+	      sql += "        e.hiredate, ";
+	      sql += "        d.dname ";
+	      sql += " FROM emp e, dept d ";
+	      sql += " WHERE e.deptno = d.deptno";
+	      sql += " ORDER BY ename ASC ";
+
 	ResultSet rs = stmt.executeQuery(sql);
 %>
 
