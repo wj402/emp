@@ -10,11 +10,11 @@
 	String ename = request.getParameter("ename");
 	String sal = request.getParameter("sal");
 	String job = request.getParameter("job");
-	String hiredate = request.getParameter("hiredate");
+	String hiredate = request.getParameter("hiredate"); // 12/25/2020 --> 2020-12-25
 	String deptno = request.getParameter("deptno");
 %>
 
-<!-- 3. 중요데이터 체크 (null값) -->
+<!-- 3. 중요데이터 체크 (null값) 유효성 체크 -->
 <%
 	if( empno == null || ename == null || empno.equals("") || ename.equals("") ) {
 %>
@@ -24,6 +24,16 @@
 	</script>
 <%
 	return; // jsp 종료
+	}
+%>
+
+<%
+	/* 날짜 데이터 세팅 */
+	if( hiredate != null && !hiredate.equals("") ) {
+		// 12/25/2020
+		String [] array = hiredate.split("/");
+		// array[0] = "12" ; array[1]="25"; array[2]="2020";
+		hiredate = array[2] + "-" + array[0] + "-" + array[1];
 	}
 %>
 
