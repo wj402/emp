@@ -35,10 +35,17 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>사원 목록화면</title>
 <link rel="stylesheet" type="text/css" href="../css/empMain.css">
 </head>
 <body>
+	<table align="center" style="border:0px;">
+		<tr>
+			<td align="right" style="border:0px;">
+				<button type="button" onclick="location='empWrite.jsp'">사원등록</button>
+			</td>
+		</tr>
+	</table>
 	<table align="center">
 		<caption>사원목록</caption>
 		<colgroup>
