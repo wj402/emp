@@ -18,7 +18,12 @@
 
 <!-- 사원이릅, 업무, 입사일, 부서명 -->
 <%
-	String sql = "SELECT empno, ename, job, hiredate, deptno FROM emp ORDER BY ename ASC ";
+	String sql = "SELECT empno,"; 
+		  sql += "       ename,";
+		  sql += "         job,"; 
+		  sql += "    hiredate,";
+		  sql += "    (select dname from dept where deptno=emp.deptno) dname";
+		  sql += " FROM emp ORDER BY ename ASC ";
 	ResultSet rs = stmt.executeQuery(sql);
 %>
 
@@ -56,14 +61,15 @@
 				String ename = rs.getString("ename");
 				String job = rs.getString("job");
 				String hiredate = rs.getString("hiredate");
-				String deptno = rs.getString("deptno");	
+				String dname = rs.getString("dname");	
 		%>
 			<tr align="center">
 				<td><%=rownumber %></td>
-				<td><%=ename %></td>
+				<!-- ? 파라미터값 -->
+				<td><a href="empModify.jsp?empno=<%=empno %>"><%=ename %></a></td>
 				<td><%=job %></td>
 				<td><%=hiredate %></td>
-				<td><%=deptno %></td>
+				<td><%=dname %></td>
 			</tr>
 		<%
 				rownumber--;
@@ -72,7 +78,7 @@
 		
 	</table>
 	<div style="width:100%;">
-		<div style="width:600px; text-align:left; ">
+		<div style="width:500px; text-align:left; margin: 0 auto; margin-top:15px;">
 			전 직원 총 : <%=total %>명
 		</div>
 	</div>
