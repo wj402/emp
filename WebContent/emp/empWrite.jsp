@@ -104,7 +104,7 @@
 			</tr>
 			<tr>
 				<th>부서번호</th>
-				<td><input type="text" name="depno"></td>
+				<td><input type="text" name="deptno"></td>
 			</tr>
 		</table>
 		<div style="width:100%; text-align:center; margin-top:10px">
