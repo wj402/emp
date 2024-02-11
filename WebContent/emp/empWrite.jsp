@@ -5,35 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="../css/empMain.css">
 </head>
 
 <style>
-	body {
-		font-size: 12px;
-		color: #555;
-		font-family: 맑은 고딕;
-	}
-	
-	button {
-		font-size: 12px;
-		color: #555;
-		font-family: 맑은 고딕;
-	}
-	
-	a {
-		text-decoration: none;
-	}
-	
-	table {
-		width: 500px;
-		border-collapse: collapse;
-	}
-	
-	th,td {
-		border:1px solid #ccc;
-		/* text-align:center; */
-		padding: 5px;
-	}
+
 </style>
 
 <script>
